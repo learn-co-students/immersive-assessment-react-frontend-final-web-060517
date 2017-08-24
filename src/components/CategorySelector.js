@@ -7,11 +7,12 @@ const CategorySelector = (props) => {
   const categoryFields = categories.map(
     (category, i) => {
 
-      const checked = category === "... your code here"
+      const checked = category === props.categorySelected
 
       return (
         <CategoryField
           key={ i }
+          handleSelect={props.handleSelect}
           checked={ checked }
           category={ category }
         />
