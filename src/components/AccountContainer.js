@@ -6,11 +6,24 @@ import {transactions} from '../transactionsData'
 class AccountContainer extends Component {
   constructor() {
     super()
-    //... your code here
+    this.state = {
+      transactions: transactions
+    }
   }
 
   handleChange() {
-    //... your code here
+    ///idk
+    this.state.transaction.category.filter(() => {
+      return transactions.category.includes(checked.value)
+    })
+  }
+
+  componentDidMount() {
+    fetch('https://boiling-brook-94902.herokuapp.com/transactions')
+    .then(resp => resp.json())
+    .then(data => this.setState({
+      transactions: data
+    }))
   }
 
   render() {
@@ -18,9 +31,9 @@ class AccountContainer extends Component {
     return (
       <div className="ui grid container">
 
-        <CategorySelector />
+        <CategorySelector handleChange={this.handleChange} />
 
-        <TransactionsList />
+        <TransactionsList transactions={this.state.transactions} />
 
       </div>
     )
